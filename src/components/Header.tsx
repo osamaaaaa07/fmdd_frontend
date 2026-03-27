@@ -31,11 +31,11 @@ const Header = () => {
             <span className="flex items-center gap-1"><Phone className="w-3 h-3" /> +212 645 466 188</span>
             <span className="hidden sm:flex items-center gap-1"><Mail className="w-3 h-3" /> contact@fmdd.ma</span>
           </div>
-          <span className="hidden md:block">Forum Marocain pour le Développement Durable</span>
+          <span className="hidden md:block text-primary-foreground/60">🇲🇦 Forum Marocain pour le Développement Durable</span>
           <div className="flex gap-3">
-            <a href="#" className="hover:text-primary-foreground">العربية</a>
-            <a href="#" className="text-primary-foreground font-medium">FR</a>
-            <a href="#" className="hover:text-primary-foreground">EN</a>
+            <a href="#" className="hover:text-primary-foreground transition-colors">العربية</a>
+            <a href="#" className="text-primary-foreground font-semibold">Français</a>
+            <a href="#" className="hover:text-primary-foreground transition-colors">English</a>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@ const Header = () => {
           </div>
         </a>
 
-        {/* Desktop nav — inwi style: simple, spaced, clean */}
+        {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-0.5">
           {menuItems.map((item) => (
             <div
@@ -63,16 +63,16 @@ const Header = () => {
             >
               <a
                 href={item.href}
-                className="flex items-center gap-1 px-4 py-2 text-[13px] font-medium text-foreground/80 hover:text-primary transition-colors rounded-lg"
+                className="flex items-center gap-1 px-3 py-2 text-[13px] font-medium text-foreground/80 hover:text-primary transition-colors rounded-lg"
               >
                 {item.label}
                 {item.children.length > 0 && <ChevronDown className="w-3 h-3 opacity-50" />}
               </a>
               {item.children.length > 0 && openDropdown === item.label && (
-                <div className="absolute top-full left-0 mt-1 bg-background rounded-xl shadow-lg border border-border py-1.5 min-w-[200px] animate-pop-in">
+                <div className="absolute top-full left-0 mt-1 bg-background rounded-xl shadow-lg border border-border py-1.5 min-w-[220px] animate-pop-in">
                   {item.children.map((child) => (
-                    <a key={child} href="#" className="block px-4 py-2 text-sm text-foreground/80 hover:bg-secondary hover:text-secondary-foreground transition-colors rounded-lg mx-1">
-                      {child}
+                    <a key={child.name} href={child.href} className="block px-4 py-2 text-sm text-foreground/80 hover:bg-secondary hover:text-secondary-foreground transition-colors rounded-lg mx-1">
+                      {child.name}
                     </a>
                   ))}
                 </div>
@@ -86,7 +86,7 @@ const Header = () => {
             <Search className="w-4 h-4" />
           </button>
           <a href="#" className="hidden md:inline-flex text-[13px] font-medium text-foreground/80 hover:text-primary px-3 py-2 transition-colors">
-            Connexion
+            Se connecter
           </a>
           <a href="#" className="hidden md:inline-flex text-[13px] font-semibold bg-primary text-primary-foreground px-5 py-2 rounded-full hover:bg-primary/90 transition-colors">
             S'inscrire
@@ -99,7 +99,7 @@ const Header = () => {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-border bg-background animate-pop-in">
+        <div className="lg:hidden border-t border-border bg-background animate-pop-in max-h-[70vh] overflow-y-auto">
           <div className="container py-4 space-y-1">
             {menuItems.map((item) => (
               <div key={item.label}>
@@ -109,14 +109,16 @@ const Header = () => {
                 {item.children.length > 0 && (
                   <div className="pl-4 space-y-0.5">
                     {item.children.map((child) => (
-                      <a key={child} href="#" className="block py-1.5 text-sm text-muted-foreground">{child}</a>
+                      <a key={child.name} href={child.href} className="block py-1.5 text-sm text-muted-foreground" onClick={() => setMobileOpen(false)}>
+                        {child.name}
+                      </a>
                     ))}
                   </div>
                 )}
               </div>
             ))}
             <div className="flex gap-2 pt-4 border-t border-border">
-              <a href="#" className="flex-1 text-center py-2.5 rounded-full border border-primary text-primary text-sm font-medium">Connexion</a>
+              <a href="#" className="flex-1 text-center py-2.5 rounded-full border border-primary text-primary text-sm font-medium">Se connecter</a>
               <a href="#" className="flex-1 text-center py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium">S'inscrire</a>
             </div>
           </div>
