@@ -1,29 +1,41 @@
 import { services } from "@/data/siteData";
+import { ChevronRight, Check } from "lucide-react";
 
 const Services = () => {
   return (
-    <section id="services" className="py-20 bg-background">
+    <section id="services" className="py-20">
       <div className="container">
-        <div className="text-center mb-14">
-          <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-2">Ce que nous offrons</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground">Nos services</h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8">
+        <p className="text-primary font-semibold text-xs uppercase tracking-[0.2em] mb-2 text-center">Nos Solutions</p>
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-3">
+          Trois piliers pour votre réussite
+        </h2>
+        <p className="text-muted-foreground text-sm text-center max-w-lg mx-auto mb-14">
+          Le FMDD vous offre trois voies vers la réussite professionnelle : formation, emploi et entrepreneuriat.
+        </p>
+
+        <div className="grid md:grid-cols-3 gap-5">
           {services.map((s) => (
             <div
               key={s.id}
-              className="group bg-card rounded-2xl p-8 border border-border transition-all duration-300 hover:shadow-[var(--card-shadow-hover)] hover:-translate-y-1"
+              className="group bg-background rounded-2xl p-7 border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-md"
             >
-              <div className="text-5xl mb-6">{s.icon}</div>
-              <h3 className="font-serif text-xl font-bold text-foreground mb-2">{s.title}</h3>
-              <p className="text-primary font-medium text-sm mb-3">{s.tagline}</p>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">{s.description}</p>
+              <span className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground font-semibold">{s.tagline}</span>
+              <h3 className="text-lg font-bold text-foreground mt-1 mb-3">{s.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-5">{s.description}</p>
+              <ul className="space-y-2 mb-6">
+                {s.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-sm text-foreground/80">
+                    <Check className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
               <a
                 href="#"
-                className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary/80 transition-colors group-hover:gap-3 gap-2"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all"
               >
                 En savoir plus
-                <span className="transition-transform group-hover:translate-x-1">→</span>
+                <ChevronRight className="w-4 h-4" />
               </a>
             </div>
           ))}

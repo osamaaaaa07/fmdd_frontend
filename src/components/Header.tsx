@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Search, ChevronDown } from "lucide-react";
+import { Menu, X, Search, ChevronDown, Phone, Mail } from "lucide-react";
 import { menuItems } from "@/data/siteData";
 
 const Header = () => {
@@ -9,7 +9,7 @@ const Header = () => {
   const timeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -18,72 +18,60 @@ const Header = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setOpenDropdown(label);
   };
-
   const handleMouseLeave = () => {
-    timeoutRef.current = window.setTimeout(() => setOpenDropdown(null), 200);
+    timeoutRef.current = window.setTimeout(() => setOpenDropdown(null), 150);
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-card/95 backdrop-blur-md shadow-md" : "bg-card"
-      }`}
-    >
-      {/* Top bar */}
-      <div className="border-b border-border">
-        <div className="container flex items-center justify-between py-2 text-xs text-muted-foreground">
-          <div className="flex gap-4">
-            <a href="#" className="hover:text-primary transition-colors">العربية</a>
-            <a href="#" className="hover:text-primary transition-colors font-semibold text-foreground">Français</a>
-            <a href="#" className="hover:text-primary transition-colors">English</a>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background shadow-sm" : "bg-background"}`}>
+      {/* Top info bar */}
+      <div className="bg-primary">
+        <div className="container flex items-center justify-between py-1.5 text-xs text-primary-foreground/80">
+          <div className="flex items-center gap-4">
+            <span className="flex items-center gap-1"><Phone className="w-3 h-3" /> +212 645 466 188</span>
+            <span className="hidden sm:flex items-center gap-1"><Mail className="w-3 h-3" /> contact@fmdd.ma</span>
           </div>
-          <div className="hidden md:flex items-center gap-3">
-            <button className="px-4 py-1.5 rounded-full border border-primary text-primary text-xs font-medium hover:bg-primary hover:text-primary-foreground transition-all">
-              Se connecter
-            </button>
-            <button className="px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-medium hover:bg-primary/90 transition-all">
-              S'inscrire
-            </button>
+          <span className="hidden md:block">Forum Marocain pour le Développement Durable</span>
+          <div className="flex gap-3">
+            <a href="#" className="hover:text-primary-foreground">العربية</a>
+            <a href="#" className="text-primary-foreground font-medium">FR</a>
+            <a href="#" className="hover:text-primary-foreground">EN</a>
           </div>
         </div>
       </div>
 
       {/* Main nav */}
       <div className="container flex items-center justify-between py-3">
-        <a href="#" className="flex items-center gap-3 shrink-0">
-          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-lg">
+        <a href="#" className="flex items-center gap-2.5 shrink-0">
+          <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-primary-foreground font-bold text-base">
             F
           </div>
-          <div className="hidden sm:block">
-            <span className="font-serif text-sm font-bold text-foreground leading-tight block">Forum Marocain</span>
-            <span className="text-[11px] text-muted-foreground leading-tight">Pour le Développement Durable</span>
+          <div className="hidden sm:block leading-tight">
+            <span className="text-sm font-bold text-foreground block">FMDD</span>
+            <span className="text-[10px] text-muted-foreground">Développement Durable</span>
           </div>
         </a>
 
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-1">
+        {/* Desktop nav — inwi style: simple, spaced, clean */}
+        <nav className="hidden lg:flex items-center gap-0.5">
           {menuItems.map((item) => (
             <div
               key={item.label}
               className="relative"
-              onMouseEnter={() => handleMouseEnter(item.label)}
+              onMouseEnter={() => item.children.length > 0 ? handleMouseEnter(item.label) : undefined}
               onMouseLeave={handleMouseLeave}
             >
               <a
-                href={item.label === "Contactez-nous" ? "#contact" : "#"}
-                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-md"
+                href={item.href}
+                className="flex items-center gap-1 px-4 py-2 text-[13px] font-medium text-foreground/80 hover:text-primary transition-colors rounded-lg"
               >
                 {item.label}
-                {item.children.length > 0 && <ChevronDown className="w-3.5 h-3.5" />}
+                {item.children.length > 0 && <ChevronDown className="w-3 h-3 opacity-50" />}
               </a>
               {item.children.length > 0 && openDropdown === item.label && (
-                <div className="absolute top-full left-0 mt-1 bg-card rounded-lg shadow-lg border border-border py-2 min-w-[200px] animate-chat-pop">
+                <div className="absolute top-full left-0 mt-1 bg-background rounded-xl shadow-lg border border-border py-1.5 min-w-[200px] animate-pop-in">
                   {item.children.map((child) => (
-                    <a
-                      key={child}
-                      href="#"
-                      className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
-                    >
+                    <a key={child} href="#" className="block px-4 py-2 text-sm text-foreground/80 hover:bg-secondary hover:text-secondary-foreground transition-colors rounded-lg mx-1">
                       {child}
                     </a>
                   ))}
@@ -94,50 +82,42 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center gap-2">
-          <div className="hidden md:flex items-center bg-muted rounded-full px-3 py-1.5">
-            <Search className="w-4 h-4 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder="Rechercher..."
-              className="bg-transparent border-none outline-none text-sm ml-2 w-32 placeholder:text-muted-foreground"
-            />
-          </div>
-          <button
-            className="lg:hidden p-2 text-foreground"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <button className="hidden md:flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors px-3 py-2 rounded-lg">
+            <Search className="w-4 h-4" />
+          </button>
+          <a href="#" className="hidden md:inline-flex text-[13px] font-medium text-foreground/80 hover:text-primary px-3 py-2 transition-colors">
+            Connexion
+          </a>
+          <a href="#" className="hidden md:inline-flex text-[13px] font-semibold bg-primary text-primary-foreground px-5 py-2 rounded-full hover:bg-primary/90 transition-colors">
+            S'inscrire
+          </a>
+          <button className="lg:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-border bg-card animate-chat-pop">
-          <div className="container py-4 space-y-2">
+        <div className="lg:hidden border-t border-border bg-background animate-pop-in">
+          <div className="container py-4 space-y-1">
             {menuItems.map((item) => (
               <div key={item.label}>
-                <a href="#" className="block py-2 text-sm font-medium text-foreground">
+                <a href={item.href} className="block py-2.5 text-sm font-medium text-foreground" onClick={() => setMobileOpen(false)}>
                   {item.label}
                 </a>
                 {item.children.length > 0 && (
-                  <div className="pl-4 space-y-1">
+                  <div className="pl-4 space-y-0.5">
                     {item.children.map((child) => (
-                      <a key={child} href="#" className="block py-1.5 text-sm text-muted-foreground">
-                        {child}
-                      </a>
+                      <a key={child} href="#" className="block py-1.5 text-sm text-muted-foreground">{child}</a>
                     ))}
                   </div>
                 )}
               </div>
             ))}
             <div className="flex gap-2 pt-4 border-t border-border">
-              <button className="flex-1 py-2 rounded-full border border-primary text-primary text-sm font-medium">
-                Se connecter
-              </button>
-              <button className="flex-1 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium">
-                S'inscrire
-              </button>
+              <a href="#" className="flex-1 text-center py-2.5 rounded-full border border-primary text-primary text-sm font-medium">Connexion</a>
+              <a href="#" className="flex-1 text-center py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium">S'inscrire</a>
             </div>
           </div>
         </div>

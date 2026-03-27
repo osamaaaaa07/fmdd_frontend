@@ -5,24 +5,24 @@ import Services from "@/components/Services";
 import About from "@/components/About";
 import KeyFigures from "@/components/KeyFigures";
 import Testimonials from "@/components/Testimonials";
-import Blog from "@/components/Blog";
-import Gallery from "@/components/Gallery";
+import Partners from "@/components/Partners";
+import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
-      <div className="pt-[100px]">
+      <div className="pt-[88px]">
         <NotificationBar />
         <Hero />
+        <KeyFigures />
         <Services />
         <About />
-        <KeyFigures />
         <Testimonials />
-        <Blog />
-        <Gallery />
+        <Partners />
+        <CTA />
         <Footer />
       </div>
       <FloatingButtons />
