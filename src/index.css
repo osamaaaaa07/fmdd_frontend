@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 150 10% 98%;
+    --background: 0 0% 100%;
     --foreground: 210 11% 15%;
 
     --card: 0 0% 100%;
@@ -15,30 +15,28 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 11% 15%;
 
-    --primary: 160 44% 30%;
+    --primary: 168 65% 28%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 55% 27%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 168 45% 95%;
+    --secondary-foreground: 168 65% 28%;
 
-    --muted: 150 10% 95%;
-    --muted-foreground: 210 5% 45%;
+    --muted: 210 20% 97%;
+    --muted-foreground: 210 10% 50%;
 
-    --accent: 30 90% 55%;
+    --accent: 36 95% 60%;
     --accent-foreground: 210 11% 15%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 150 10% 90%;
-    --input: 150 10% 90%;
-    --ring: 160 44% 30%;
+    --border: 210 20% 93%;
+    --input: 210 20% 93%;
+    --ring: 168 65% 28%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    --hero-gradient: linear-gradient(135deg, hsl(160 44% 30%), hsl(210 55% 27%));
-    --card-shadow: 0 4px 24px -4px hsl(210 11% 15% / 0.08);
-    --card-shadow-hover: 0 12px 32px -8px hsl(210 11% 15% / 0.15);
+    --hero-gradient: linear-gradient(135deg, hsl(168 65% 22%), hsl(168 50% 32%));
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -56,52 +54,29 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
   }
-  h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-  }
 }
 
-@layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: var(--hero-gradient);
-  }
-}
-
-/* Notification bar animation */
+/* Notification bar */
 @keyframes scroll-left {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-
 .animate-scroll-left {
   animation: scroll-left 30s linear infinite;
 }
 
-/* Counter fade in */
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-up {
-  animation: fade-up 0.6s ease-out forwards;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Chat bubble animation */
-@keyframes chat-pop {
-  from { opacity: 0; transform: scale(0.9) translateY(10px); }
+/* Smooth pop */
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
+.animate-pop-in {
+  animation: pop-in 0.25s ease-out forwards;
+}
 
-.animate-chat-pop {
-  animation: chat-pop 0.3s ease-out forwards;
+html {
+  scroll-behavior: smooth;
 }
