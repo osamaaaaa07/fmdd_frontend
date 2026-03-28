@@ -29,22 +29,37 @@ const FloatingButtons = () => {
   return (
     <>
       {/* Fixed side buttons */}
-      <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-1.5">
-        <a href="#" className="flex items-center gap-2 bg-background text-foreground px-3 py-2.5 rounded-l-xl text-xs font-medium hover:px-5 transition-all shadow-md border border-r-0 border-border">
-          <FileText className="w-3.5 h-3.5 text-primary" />
-          <span className="hidden md:inline">Brochure</span>
+      <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-2 pointer-events-none items-end">
+        <a 
+          href="/brochure.pdf" 
+          target="_blank"
+          className="group pointer-events-auto relative flex items-center bg-white text-primary rounded-l-2xl shadow-2xl border border-border h-12 lg:h-14 w-44 translate-x-[calc(44*4px-48px)] lg:translate-x-[calc(44*4px-56px)] hover:translate-x-0 transition-all duration-300 ease-out overflow-hidden"
+        >
+          <div className="w-12 lg:w-14 h-full flex items-center justify-center shrink-0 transition-all duration-300">
+            <FileText className="w-5 h-5" />
+          </div>
+          <span className="text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pr-6">BROCHURE</span>
         </a>
-        <a href="#contact" className="flex items-center gap-2 bg-primary text-primary-foreground px-3 py-2.5 rounded-l-xl text-xs font-medium hover:px-5 transition-all shadow-md">
-          <Phone className="w-3.5 h-3.5" />
-          <span className="hidden md:inline">Contact</span>
+        
+        <a 
+          href="#contact" 
+          className="group pointer-events-auto relative flex items-center bg-primary text-primary-foreground rounded-l-2xl shadow-2xl h-12 lg:h-14 w-44 translate-x-[calc(44*4px-48px)] lg:translate-x-[calc(44*4px-56px)] hover:translate-x-0 transition-all duration-300 ease-out overflow-hidden"
+        >
+          <div className="w-12 lg:w-14 h-full flex items-center justify-center shrink-0 transition-all duration-300">
+            <Phone className="w-5 h-5" />
+          </div>
+          <span className="text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pr-6">CONTACT</span>
         </a>
+
         <button
           onClick={() => setChatOpen(!chatOpen)}
-          className="group relative flex items-center gap-2 bg-accent text-accent-foreground px-3 py-2.5 rounded-l-xl text-xs font-bold hover:px-5 transition-all shadow-md"
+          className="group pointer-events-auto relative flex items-center bg-accent text-accent-foreground rounded-l-2xl shadow-2xl h-12 lg:h-14 w-44 translate-x-[calc(44*4px-48px)] lg:translate-x-[calc(44*4px-56px)] hover:translate-x-0 transition-all duration-300 ease-out overflow-hidden"
         >
-          <MessageCircle className="w-3.5 h-3.5" />
-          <span className="hidden md:inline">CAHTBOTT</span>
-          <span className="absolute right-full mr-2 top-1/2 -translate-y-1/2 bg-foreground text-primary-foreground text-[10px] rounded-lg px-2.5 py-1.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
+          <div className="w-12 lg:w-14 h-full flex items-center justify-center shrink-0 transition-all duration-300">
+            <MessageCircle className="w-5 h-5" />
+          </div>
+          <span className="text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pr-6 uppercase tracking-wider">CHATBOT</span>
+          <span className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-foreground text-background text-[10px] font-bold rounded-lg px-3 py-2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all pointer-events-none shadow-2xl translate-x-4 group-hover:translate-x-0">
             En quoi puis-je vous aider ?
           </span>
         </button>
@@ -54,18 +69,28 @@ const FloatingButtons = () => {
       {chatOpen && (
         <div className="fixed bottom-4 right-4 z-50 w-[360px] max-w-[calc(100vw-2rem)] bg-background rounded-2xl shadow-2xl border border-border animate-pop-in flex flex-col overflow-hidden" style={{ height: "480px" }}>
           {/* Header */}
-          <div className="px-4 py-3 flex items-center justify-between" style={{ backgroundImage: "var(--hero-gradient)" }}>
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-primary-foreground/20 flex items-center justify-center text-primary-foreground font-bold text-sm">F</div>
-              <div>
-                <p className="text-primary-foreground font-semibold text-sm">CAHTBOTT FMDD</p>
-                <div className="flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                  <p className="text-primary-foreground/60 text-[10px]">En ligne</p>
+          <div className="px-6 py-5 flex items-center justify-between border-b border-border" style={{ backgroundImage: "linear-gradient(to right, #001233, #002855)" }}>
+            <div className="flex items-center gap-3">
+              <div className="relative w-11 h-11 rounded-full border border-primary-foreground/20 overflow-hidden bg-white/10 flex items-center justify-center shadow-inner">
+                <img 
+                  src="/assets/logo.png" 
+                  alt="FMDD" 
+                  className="w-full h-full object-contain p-0.5"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.parentElement!.innerHTML = '<span class="text-primary-foreground font-bold text-lg">F</span>';
+                  }}
+                />
+              </div>
+              <div className="leading-tight">
+                <p className="text-primary-foreground font-bold text-sm tracking-wide uppercase">CAHTBOTT FMDD</p>
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_8px_rgba(255,183,3,0.6)]" />
+                  <p className="text-primary-foreground/70 text-[10px] uppercase font-bold tracking-tighter">Support en ligne</p>
                 </div>
               </div>
             </div>
-            <button onClick={() => setChatOpen(false)} className="text-primary-foreground/60 hover:text-primary-foreground transition-colors">
+            <button onClick={() => setChatOpen(false)} className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-primary-foreground/60 hover:text-white hover:bg-white/20 transition-all">
               <X className="w-5 h-5" />
             </button>
           </div>

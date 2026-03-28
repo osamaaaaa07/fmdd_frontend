@@ -25,30 +25,41 @@ const Header = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background shadow-sm" : "bg-background"}`}>
       {/* Top info bar */}
-      <div className="bg-primary">
-        <div className="container flex items-center justify-between py-1.5 text-xs text-primary-foreground/80">
+      <div className="bg-primary hidden sm:block">
+        <div className="container flex items-center justify-between py-1.5 text-[11px] text-primary-foreground/90">
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1"><Phone className="w-3 h-3" /> +212 645 466 188</span>
-            <span className="hidden sm:flex items-center gap-1"><Mail className="w-3 h-3" /> contact@fmdd.ma</span>
+            <span className="flex items-center gap-1.5"><Phone className="w-3 h-3" /> +212 645 466 188</span>
+            <span className="hidden md:flex items-center gap-1.5"><Mail className="w-3 h-3" /> contact@fmdd.ma</span>
           </div>
-          <span className="hidden md:block text-primary-foreground/60">🇲🇦 Forum Marocain pour le Développement Durable</span>
-          <div className="flex gap-3">
-            <a href="#" className="hover:text-primary-foreground transition-colors">العربية</a>
-            <a href="#" className="text-primary-foreground font-semibold">Français</a>
-            <a href="#" className="hover:text-primary-foreground transition-colors">English</a>
+          <div className="flex items-center gap-4">
+            <div className="flex gap-3 font-medium">
+              <button className="hover:text-accent transition-colors">العربية</button>
+              <button className="text-accent underline underline-offset-4">Français</button>
+              <button className="hover:text-accent transition-colors">English</button>
+            </div>
+            <div className="h-3 w-[1px] bg-primary-foreground/20 hidden md:block" />
+            <span className="hidden md:block opacity-80 uppercase tracking-wider">Forum Marocain Pour Le Développement Durable</span>
           </div>
         </div>
       </div>
 
       {/* Main nav */}
-      <div className="container flex items-center justify-between py-3">
-        <a href="#" className="flex items-center gap-2.5 shrink-0">
-          <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-primary-foreground font-bold text-base">
-            F
+      <div className="container flex items-center justify-between py-3 lg:py-5">
+        <a href="/" className="flex items-center gap-3 shrink-0 group">
+          <div className="relative w-12 h-12 lg:w-14 lg:h-14 rounded-full border-2 border-primary overflow-hidden bg-white shadow-sm transition-transform group-hover:scale-105">
+            <img 
+              src="/assets/logo.png" 
+              alt="FMDD Logo" 
+              className="w-full h-full object-contain p-1"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.parentElement!.innerHTML = '<div class="w-full h-full flex items-center justify-center bg-primary text-primary-foreground font-bold text-xl">F</div>';
+              }}
+            />
           </div>
-          <div className="hidden sm:block leading-tight">
-            <span className="text-sm font-bold text-foreground block">FMDD</span>
-            <span className="text-[10px] text-muted-foreground">Développement Durable</span>
+          <div className="hidden sm:block leading-none">
+            <h1 className="text-base lg:text-lg font-bold text-foreground uppercase tracking-tight">FMDD</h1>
+            <p className="text-[9px] lg:text-[10px] text-muted-foreground font-medium uppercase tracking-[0.1em]">Forum Marocain Pour Le<br/>Développement Durable</p>
           </div>
         </a>
 

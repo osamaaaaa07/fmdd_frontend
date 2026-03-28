@@ -2,7 +2,7 @@ export const notifications = [
   { id: 1, text: "📢 Inscriptions ouvertes – Formation Développement Durable, Session Mai 2026", link: "#" },
   { id: 2, text: "🎓 +50 nouveaux cours disponibles sur FMDD Academy", link: "#" },
   { id: 3, text: "💼 87% de taux d'insertion professionnelle pour nos diplômés", link: "#" },
-  { id: 4, text: "🌍 15 000+ jeunes accompagnés à travers tout le Maroc", link: "#" },
+  { id: 4, text: "🌍 5000+ jeunes accompagnés à travers tout le Maroc", link: "#" },
   { id: 5, text: "🚀 FMDD Entrepreneuriat : Nouveau programme d'incubation ouvert", link: "#" },
 ];
 
@@ -37,10 +37,10 @@ export const services = [
 ];
 
 export const keyFigures = [
-  { id: 1, label: "Jeunes accompagnés", value: 15000, suffix: "+", description: "Bénéficiaires de nos programmes" },
-  { id: 2, label: "Formations certifiantes", value: 200, suffix: "+", description: "Disponibles sur notre plateforme" },
+  { id: 1, label: "Jeunes accompagnés", value: 5000, suffix: "+", description: "Bénéficiaires de nos programmes" },
+  { id: 2, label: "Formations certifiantes", value: 30, suffix: "+", description: "Disponibles sur notre plateforme" },
   { id: 3, label: "Taux d'insertion", value: 87, suffix: "%", description: "De nos diplômés en emploi" },
-  { id: 4, label: "Entreprises partenaires", value: 150, suffix: "+", description: "Qui recrutent nos talents" },
+  { id: 4, label: "Entreprises partenaires", value: 50, suffix: "+", description: "Qui recrutent nos talents" },
 ];
 
 export const missionPillars = [
@@ -86,7 +86,7 @@ export const blogPosts = [
     summary: "Retour sur les engagements pris par le Maroc lors de la dernière Conférence des Parties et leur mise en œuvre.",
     date: "28 Février 2026",
     category: "Climat",
-    image: "https://images.unsplash.com/photo-1569163139394-de4e4f43e4e3?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=600&h=400&fit=crop",
   },
   {
     id: 3,
@@ -120,7 +120,7 @@ export const menuItems = [
     href: "#about",
   },
   {
-    label: "Nos Solutions",
+    label: "Nos solutions",
     children: [
       { name: "FMDD Academy", href: "#services" },
       { name: "FMDD Job", href: "#services" },
@@ -157,20 +157,24 @@ export const menuItems = [
 ];
 
 export const chatbotResponses: Record<string, string> = {
-  brochure: "📄 Vous pouvez télécharger notre brochure ici : [Télécharger la brochure FMDD](https://fmdd.ma/brochure.pdf)",
-  contact: "📞 Contactez-nous au +212 645 466 188 ou par email à contact@fmdd.ma",
-  formation: "🎓 Nous proposons plus de 200 formations certifiantes. Visitez FMDD Academy pour en savoir plus !",
+  brochure: "📄 Vous pouvez télécharger notre brochure ici : [Télécharger la brochure FMDD](https://fmdd.ma/brochure.pdf)\n\n📄 You can download our brochure here : [Download FMDD Brochure](https://fmdd.ma/brochure.pdf)\n\n📄 يمكنك تحميل الكتيب الخاص بنا هنا : [تحميل كتيب FMDD](https://fmdd.ma/brochure.pdf)",
+  contact: "📞 Contactez-nous au +212 645 466 188 ou par email à contact@fmdd.ma\n\n📞 Contact us at +212 645 466 188 or by email at contact@fmdd.ma\n\n📞 اتصل بنا على 188 466 645 212+ أو عبر البريد الإلكتروني contact@fmdd.ma",
+  formation: "🎓 Nous proposons plus de 200 formations certifiantes. Visitez FMDD Academy pour en savoir plus !\n\n🎓 We offer over 200 certified training courses. Visit FMDD Academy to learn more!\n\n🎓 نقدم أكثر من 200 دورة تدريبية معتمدة. قم بزيارة FMDD Academy للمزيد!",
   academy: "🎓 FMDD Academy propose des formations certifiantes en développement durable, compétences numériques et soft skills.",
   event: "📅 Consultez nos événements à venir sur la page Événements du site.",
   evenement: "📅 Consultez nos événements à venir sur la page Événements du site.",
   emploi: "💼 Consultez nos offres d'emploi sur FMDD Job. 87% de taux d'insertion !",
-  job: "💼 FMDD Job met en relation les jeunes talents avec plus de 150 entreprises partenaires.",
+  job: "💼 FMDD Job connects young talents with over 150 partner companies.",
   entrepreneuriat: "🚀 Le programme FMDD Entrepreneuriat offre incubation, mentorat et financement pour vos projets.",
   inscription: "✅ Inscrivez-vous gratuitement sur fmdd.ma/register pour accéder à tous nos services.",
-  bonjour: "Bonjour ! 👋 Bienvenue au Forum Marocain pour le Développement Durable. Comment puis-je vous aider ?",
+  bonjour: "Bonjour ! 👋 Bienvenue au Forum Marocain pour le Développement Durable. Comment puis-je vous aider ?\n\nHello! 👋 Welcome to Morocco Forum for Sustainable Development. How can I help you?\n\nمرحباً! 👋 مرحباً بكم في المنتدى المغربي للتنمية المستدامة. كيف يمكنني مساعدتكم؟",
   salut: "Salut ! 👋 Comment puis-je vous aider aujourd'hui ?",
+  hello: "Hello! 👋 Welcome to Morocco Forum for Sustainable Development. How can I help you?",
+  marhaba: "مرحباً! 👋 مرحباً بكم في المنتدى المغربي للتنمية المستدامة. كيف يمكنني مساعدتكم؟",
   merci: "Avec plaisir ! N'hésitez pas si vous avez d'autres questions. 😊",
-  aide: "Je peux vous aider avec : 📄 Brochure, 🎓 Formations, 💼 Emploi, 🚀 Entrepreneuriat, 📅 Événements, 📞 Contact. Que souhaitez-vous savoir ?",
-  help: "I can help you with: 📄 Brochure, 🎓 Training, 💼 Jobs, 🚀 Entrepreneurship, 📅 Events, 📞 Contact. What would you like to know?",
-  faq: "📋 Voici quelques questions fréquentes :\n• Comment s'inscrire ? → Tapez 'inscription'\n• Quelles formations ? → Tapez 'formation'\n• Offres d'emploi ? → Tapez 'emploi'\n• Nous contacter ? → Tapez 'contact'",
+  thanks: "You're welcome! Don't hesitate if you have more questions. 😊",
+  shukran: "على الرحب والسعة! لا تتردد في حال كان لديك أي أسئلة أخرى. 😊",
+  aide: "Je peux vous aider avec : 📄 Brochure, 🎓 Formations, 💼 Emploi, 🚀 Entrepreneuriat, 📅 Événements, 📞 Contact.",
+  help: "I can help you with: 📄 Brochure, 🎓 Training, 💼 Jobs, 🚀 Entrepreneurship, 📅 Events, 📞 Contact.",
+  faq: "📋 Voici quelques questions fréquentes :\n• Comment s'inscrire ? → 'inscription'\n• Quelles formations ? → 'formation'\n• Offres d'emploi ? → 'emploi'\n• Nous contacter ? → 'contact'",
 };

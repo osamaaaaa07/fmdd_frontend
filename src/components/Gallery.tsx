@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { galleryItems } from "@/data/siteData";
-import { X } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState<typeof galleryItems[0] | null>(null);
 
   return (
     <section id="gallery" className="py-20 bg-muted">
@@ -14,52 +12,33 @@ const Gallery = () => {
           Photos et réalisations pour mettre en avant nos projets et événements.
         </p>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
           {galleryItems.map((item) => (
-            <button
+            <a
               key={item.id}
-              onClick={() => setSelectedImage(item)}
-              className="group relative aspect-[4/3] rounded-xl overflow-hidden"
+              href={`#event-${item.id}`}
+              className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 block"
             >
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/40 transition-colors flex items-end">
-                <div className="p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <p className="text-primary-foreground text-sm font-semibold">{item.title}</p>
-                  <p className="text-primary-foreground/70 text-xs">{item.category}</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 p-6 flex flex-col justify-end translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                <span className="text-[10px] font-bold text-accent uppercase tracking-widest mb-2">{item.category}</span>
+                <h4 className="text-white font-bold text-base md:text-lg mb-4 line-clamp-1">{item.title}</h4>
+                <div className="flex items-center gap-2 text-white/80 text-[10px] uppercase font-bold tracking-tighter group-hover:text-accent transition-colors">
+                  Voir l'événement <ChevronRight className="w-3 h-3" /> 
                 </div>
               </div>
-            </button>
+            </a>
           ))}
         </div>
       </div>
 
-      {/* Lightbox modal */}
-      {selectedImage && (
-        <div className="fixed inset-0 z-50 bg-foreground/80 flex items-center justify-center p-4" onClick={() => setSelectedImage(null)}>
-          <div className="relative max-w-3xl w-full animate-pop-in" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute -top-10 right-0 text-primary-foreground/80 hover:text-primary-foreground"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            <img
-              src={selectedImage.image}
-              alt={selectedImage.title}
-              className="w-full rounded-2xl object-cover max-h-[70vh]"
-            />
-            <div className="mt-3 text-center">
-              <p className="text-primary-foreground font-semibold">{selectedImage.title}</p>
-              <p className="text-primary-foreground/60 text-sm">{selectedImage.category}</p>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Redirection notice if needed */}
     </section>
   );
 };
