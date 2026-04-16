@@ -21,7 +21,7 @@ class SecurityHeaders
         );
         $response->headers->set(
             'Content-Security-Policy',
-            "default-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+            "default-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'; object-src 'none'; script-src 'none'; style-src 'none'; img-src 'none'; font-src 'none'; connect-src 'self'; frame-src 'none'; child-src 'none'; manifest-src 'none'; media-src 'none'; worker-src 'none'"
         );
 
         return $response;
